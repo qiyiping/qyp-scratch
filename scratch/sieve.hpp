@@ -34,7 +34,7 @@ class PrimeGenerator: public Iteratable<T> {
         composite_[num*num] = std::vector<T>(1, num);
         return num;
       } else {
-        for (size_t i = 0; i < composite_[num].size(); ++i) {
+        for (std::size_t i = 0; i < composite_[num].size(); ++i) {
           if (composite_.find(num+composite_[num][i]) == composite_.end()) {
             composite_[num+composite_[num][i]] = std::vector<T>(1, composite_[num][i]);
           } else {
