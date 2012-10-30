@@ -34,6 +34,8 @@
 #define _TIME_H_
 #include <sys/time.h>
 #include <time.h>
+#include <iostream>
+#include <string>
 #include "config.hpp"
 
 namespace base {
@@ -59,6 +61,16 @@ inline void MicroSeccondsToTimespec(int64_t us, struct timespec *ts) {
   ts->tv_nsec = (us%1000000)*1000;
 }
 
+class Timer {
+ public:
+  Timer(const std::string &hint): hint_(hint) { time_ = GetMilliSeconds(); }
+  Timer() { time_ = GetMilliSeconds(); }
+  int64_t GetElapsedTime() { return GetMilliSeconds() - time_; }
+  ~Timer() { std::cout << hint_ << GetElapsedTime() << std::endl; }
+ private:
+  int64_t time_;
+  const std::string hint_;
+};
 }
 
 #endif /* _TIME_H_ */
