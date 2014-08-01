@@ -5,3 +5,5 @@
 [[http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes][Sieve of Eratosthenes]]
 
 This incremental sieve is implemented according to *The Genuine Sieve of Eratosthenes*
+
+** Brief Intro to LR
