@@ -30,13 +30,13 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef _TIME_H_
-#define _TIME_H_
+#ifndef _BASE_TIME_H_
+#define _BASE_TIME_H_
 #include <sys/time.h>
 #include <time.h>
 #include <iostream>
 #include <string>
-#include "config.hpp"
+#include "base/config.hpp"
 
 namespace base {
 inline int64_t GetMilliSeconds() {
@@ -73,4 +73,4 @@ class Timer {
 };
 }
 
-#endif /* _TIME_H_ */
+#endif /* _BASE_TIME_H_ */

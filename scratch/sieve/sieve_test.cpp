@@ -1,6 +1,6 @@
-#include "sieve.hpp"
+#include "sieve/sieve.hpp"
+#include "base/time.hpp"
 #include <iostream>
-#include "time.hpp"
 
 int main(int argc, char *argv[]) {
   int ith = 100000;
