@@ -6,4 +6,6 @@
 
 This incremental sieve is implemented according to *The Genuine Sieve of Eratosthenes*
 
-** Brief Intro to LR
+** Brief Introduction to Logistic Regression
+
+** Brief Introduction to Reinforcement Learning
