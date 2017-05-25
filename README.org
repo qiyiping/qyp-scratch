@@ -7,5 +7,7 @@
 This incremental sieve is implemented according to *The Genuine Sieve of Eratosthenes*
 
 ** Brief Introduction to Logistic Regression
-
+[[https://github.com/qiyiping/qyp-scratch/blob/master/doc/Intro-to-lr-opt.pdf][Introduction to Logistic Regression]]
 ** Brief Introduction to Reinforcement Learning
+[[https://github.com/qiyiping/qyp-scratch/blob/master/doc/intro_to_rl.pdf][Introduction to Reinforcement Learning]]
+** OpenAI gym solutions
