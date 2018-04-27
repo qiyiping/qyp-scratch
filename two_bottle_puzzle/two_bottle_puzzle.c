@@ -48,7 +48,7 @@ typedef struct _state {
   bool visited;
 } state;
 
-char action_table[6][30] = {
+static char action_table[6][30] = {
   "fill x",
   "fill y",
   "empty x",
