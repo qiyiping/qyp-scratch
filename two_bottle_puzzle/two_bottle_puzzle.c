@@ -34,8 +34,9 @@ bool push(queue *q, int i) {
 
 bool pop(queue *q, int *i) {
   if (q->front == q->end) return false;
-  *i = q->q[q->end];
-  q->end = (q->end + 1) % q->size;
+  int idx = (q->end + 1) % q->size;
+  *i = q->q[idx];
+  q->end = idx;
   return true;
 }
 
