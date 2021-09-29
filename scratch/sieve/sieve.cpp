@@ -1,13 +1,15 @@
 #include "sieve/sieve.hpp"
-#include "base/time.hpp"
 #include <iostream>
+#include "absl/flags/flag.h"
+#include "absl/flags/parse.h"
+
+ABSL_FLAG(int, number, 1, "the number-th prime");
 
 int main(int argc, char *argv[]) {
-  int ith = 100000;
-  if (argc > 1) {
-    ith = atoi(argv[1]);
-  }
-  int64_t t1 = base::GetMicroSeconds();
+  absl::ParseCommandLine(argc, argv);
+  int ith = absl::GetFlag(FLAGS_number);
+
+  // int64_t t1 = base::GetMicroSeconds();
   // PrimeGenerator<long long> p;
   // for (int i = 0; i < ith-1; ++i) {
   //   p.Next();
@@ -23,6 +25,6 @@ int main(int argc, char *argv[]) {
     // std::cout << p2.Next() << " ";
   }
   std::cout << p2.Next() << std::endl;
-  std::cout << base::GetMicroSeconds() - t1 << std::endl;
+  // std::cout << base::GetMicroSeconds() - t1 << std::endl;
   return 0;
 }

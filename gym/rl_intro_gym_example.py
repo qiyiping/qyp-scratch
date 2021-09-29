@@ -65,8 +65,8 @@ for episode in range(50000):
         if done:
             rounds.append(t)
             break
-    if episode % 100 == 1:
-        last_mean = np.array(rounds[-100:-1]).mean()
+    if episode % 500 == 1:
+        last_mean = np.array(rounds[-500:-1]).mean()
         print("Episode finished after {} timesteps".format(last_mean))
         if last_mean > 195.0:
             break
