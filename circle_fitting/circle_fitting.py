@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import torch
 from torch import nn
 from torch.nn.parameter import Parameter
-from torch.optim import SGD
+from torch.optim import SGD, LBFGS
 
 class CircleFitting2(nn.Module):
     def __init__(self):
@@ -54,31 +54,43 @@ class CircleFitting(object):
 
 if __name__ == '__main__':
     n = 30
-    x_ground_truth = 1.5
-    y_ground_truth = 2.0
-    r_ground_truth = 5
+    # x_ground_truth = 1.5
+    # y_ground_truth = 2.0
+    # r_ground_truth = 5
+    x_ground_truth = np.random.uniform(-100, 100)
+    y_ground_truth = np.random.uniform(-100, 100)
+    r_ground_truth = np.random.uniform(1, 10)
+    print("GROUND TRUTH(x,y,r): ", x_ground_truth, y_ground_truth, r_ground_truth)
     angle = np.random.uniform(0, 2*np.pi, (n, 1))
     points = np.hstack([np.cos(angle), np.sin(angle)])*r_ground_truth + np.hstack([np.ones((n,1))*x_ground_truth, np.ones((n,1))*y_ground_truth])
     noise = np.random.normal(0.0, 0.2, (n, 2))
     points += noise
     c = CircleFitting()
     x ,y , r = c.fit(points)
-    print(x_ground_truth, y_ground_truth, r_ground_truth, x, y, r)
+    print("ESTIMATION1(x,y,r): ", x, y, r)
 
     # ax = plt.gca()
     # ax.cla()
     # ax.scatter(points[:,0], points[:,1], color='b')
-    # ax.add_artist(plt.Circle([x,y], r, fill=False, color='r'))
-    # plt.show()
+    # ax.add_artist(plt.Circle((x,y), r, fill=False, color='g'))
 
 
     c2 = CircleFitting2()
-    optimizer = SGD(c2.parameters(), lr=0.1)
+    # optimizer = SGD(c2.parameters(), lr=1.0e-3, momentum=0.9)
+    optimizer = LBFGS(c2.parameters(), lr=1.0e-1)
     point_tensors = torch.tensor(points)
-    for i in range(50):
-        optimizer.zero_grad()
-        res = c2(point_tensors)
-        loss = torch.mean(res*res)
-        loss.backward()
-        optimizer.step()
-    print(x_ground_truth, y_ground_truth, r_ground_truth, c2.center, c2.radius)
+    for i in range(100):
+        def closure():
+            optimizer.zero_grad()
+            res = c2(point_tensors)
+            loss = torch.mean(res*res)
+            # if i % 1000 == 0:
+            #     print(f"iteration {i}: loss={loss.item()}")
+            loss.backward()
+            return loss
+        optimizer.step(closure)
+    print("ESTIMATION2(x,y,r): ", c2.center.tolist(), c2.radius.item())
+
+
+    # ax.add_artist(plt.Circle(c2.center.tolist()[0], c2.radius.item(), fill=False, color='r'))
+    # plt.show()
