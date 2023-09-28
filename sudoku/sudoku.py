@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import itertools
-from contextlib import contextmanager
 from pprint import pprint
 
 
@@ -10,11 +8,11 @@ class Soduku(object):
         self.problem = problem
 
     def build_board(self):
-        b = np.zeros((9,9), dtype=int)
-        for r,c,v in self.problem:
+        b = np.zeros((9, 9), dtype=int)
+        for r, c, v in self.problem:
             b[r-1, c-1] = v
-        x, y = np.where(b==0)
-        return b, list(zip(x,y))
+        x, y = np.where(b == 0)
+        return b, list(zip(x, y))
 
     def solve(self):
         b, xy = self.build_board()
