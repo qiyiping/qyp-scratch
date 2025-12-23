@@ -1,9 +1,9 @@
-from PIL import Image, ImageDraw
+from PIL import Image
 
 
 def layout_2in_photos_on_6in(input_photo_path, output_photo_path):
     """
-    将一张2寸照片排版到6寸相纸上（2x2布局，共4张）
+    将一张2寸照片排版到6寸相纸上（2x3布局，共4张）
 
     参数:
         input_photo_path (str): 输入原始照片的路径
